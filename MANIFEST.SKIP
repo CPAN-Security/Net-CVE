@@ -12,6 +12,7 @@ appveyor\.yml
 \.whitesource
 ^blib/
 ^cover_db/
+^cve\.org/
 ^doc/
 ^sandbox/
 ^tmp/
@@ -19,6 +20,7 @@ appveyor\.yml
 genMETA.pl
 ^Makefile$
 MANIFEST\.SKIP
+CONTRIBUTING\.md
 ^MYMETA
 pm_to_blib
 ^xt/
