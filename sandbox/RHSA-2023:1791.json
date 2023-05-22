@@ -1,0 +1,825 @@
+{
+   "cvrfdoc" : {
+      "aggregate_severity" : "Important",
+      "document_distribution" : "Copyright © 2023 Red Hat, Inc. All rights reserved.",
+      "document_notes" : {
+         "note" : [
+            "An update for firefox is now available for Red Hat Enterprise Linux 7.\nRed Hat Product Security has rated this update as having a security impact of Important. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.",
+            "Mozilla Firefox is an open-source web browser, designed for standards compliance, performance, and portability.\nThis update upgrades Firefox to version 102.10.0 ESR.\nSecurity Fix(es):\n* MFSA-TMP-2023-0001 Mozilla: Double-free in libwebp (BZ#2186102)\n* Mozilla: Fullscreen notification obscured (CVE-2023-29533)\n* Mozilla: Potential Memory Corruption following Garbage Collector compaction (CVE-2023-29535)\n* Mozilla: Invalid free from JavaScript code (CVE-2023-29536)\n* Mozilla: Memory safety bugs fixed in Firefox 112 and Firefox ESR 102.10 (CVE-2023-29550)\n* Mozilla: Memory Corruption in Safe Browsing Code (CVE-2023-1945)\n* Mozilla: Content-Disposition filename truncation leads to Reflected File Download (CVE-2023-29539)\n* Mozilla: Files with malicious extensions could have been downloaded unsafely on Linux (CVE-2023-29541)\n* Mozilla: Incorrect optimization result on ARM64 (CVE-2023-29548)\nFor more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.",
+            "This content is licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). If you distribute this content, or a modified version of it, you must provide attribution to Red Hat Inc. and provide a link to the original."
+            ]
+         },
+      "document_publisher" : {
+         "contact_details" : "secalert@redhat.com",
+         "issuing_authority" : "Red Hat Product Security",
+         "type" : "Vendor"
+         },
+      "document_references" : {
+         "reference" : [
+            {
+               "description" : "https://access.redhat.com/errata/RHSA-2023:1791",
+               "type" : "Self",
+               "url" : "https://access.redhat.com/errata/RHSA-2023:1791"
+               },
+            {
+               "description" : "https://access.redhat.com/security/updates/classification/#important",
+               "type" : "External",
+               "url" : "https://access.redhat.com/security/updates/classification/#important"
+               }
+            ]
+         },
+      "document_title" : "Red Hat Security Advisory: firefox security update",
+      "document_tracking" : {
+         "current_release_date" : "2023-04-28T13:58:00Z",
+         "generator" : {
+            "date" : "2023-04-28T14:51:00Z",
+            "engine" : "Red Hat SDEngine 3.14.1"
+            },
+         "identification" : {
+            "id" : "RHSA-2023:1791"
+            },
+         "initial_release_date" : "2023-04-14T13:50:00Z",
+         "revision_history" : {
+            "revision" : {
+               "date" : "2023-04-28T13:58:00Z",
+               "description" : "Current version",
+               "number" : "1"
+               }
+            },
+         "status" : "Final",
+         "version" : "1"
+         },
+      "document_type" : "Security Advisory",
+      "product_tree" : {
+         "branch" : [
+            {
+               "branch" : [
+                  {
+                     "full_product_name" : {
+                        "cpe" : "cpe:/o:redhat:enterprise_linux:7::client",
+                        "product_id" : "7Client-7.9.Z",
+                        "product_name" : "Red Hat Enterprise Linux Client (v. 7)"
+                        },
+                     "name" : "Red Hat Enterprise Linux Client (v. 7)",
+                     "type" : "Product Name"
+                     },
+                  {
+                     "full_product_name" : {
+                        "cpe" : "cpe:/o:redhat:enterprise_linux:7::client",
+                        "product_id" : "7Client-optional-7.9.Z",
+                        "product_name" : "Red Hat Enterprise Linux Client Optional (v. 7)"
+                        },
+                     "name" : "Red Hat Enterprise Linux Client Optional (v. 7)",
+                     "type" : "Product Name"
+                     },
+                  {
+                     "full_product_name" : {
+                        "cpe" : "cpe:/o:redhat:enterprise_linux:7::server",
+                        "product_id" : "7Server-7.9.Z",
+                        "product_name" : "Red Hat Enterprise Linux Server (v. 7)"
+                        },
+                     "name" : "Red Hat Enterprise Linux Server (v. 7)",
+                     "type" : "Product Name"
+                     },
+                  {
+                     "full_product_name" : {
+                        "cpe" : "cpe:/o:redhat:enterprise_linux:7::server",
+                        "product_id" : "7Server-optional-7.9.Z",
+                        "product_name" : "Red Hat Enterprise Linux Server Optional (v. 7)"
+                        },
+                     "name" : "Red Hat Enterprise Linux Server Optional (v. 7)",
+                     "type" : "Product Name"
+                     },
+                  {
+                     "full_product_name" : {
+                        "cpe" : "cpe:/o:redhat:enterprise_linux:7::workstation",
+                        "product_id" : "7Workstation-7.9.Z",
+                        "product_name" : "Red Hat Enterprise Linux Workstation (v. 7)"
+                        },
+                     "name" : "Red Hat Enterprise Linux Workstation (v. 7)",
+                     "type" : "Product Name"
+                     },
+                  {
+                     "full_product_name" : {
+                        "cpe" : "cpe:/o:redhat:enterprise_linux:7::workstation",
+                        "product_id" : "7Workstation-optional-7.9.Z",
+                        "product_name" : "Red Hat Enterprise Linux Workstation Optional (v. 7)"
+                        },
+                     "name" : "Red Hat Enterprise Linux Workstation Optional (v. 7)",
+                     "type" : "Product Name"
+                     }
+                  ],
+               "name" : "Red Hat Enterprise Linux",
+               "type" : "Product Family"
+               },
+            {
+               "full_product_name" : {
+                  "cpe" : "cpe:/o:redhat:enterprise_linux:7::client",
+                  "product_id" : "firefox-0:102.10.0-1.el7_9",
+                  "product_name" : "firefox-102.10.0-1.el7_9.src.rpm"
+                  },
+               "name" : "firefox-0:102.10.0-1.el7_9",
+               "type" : "Product Version"
+               }
+            ],
+         "relationship" : [
+            {
+               "full_product_name" : {
+                  "cpe" : "cpe:/o:redhat:enterprise_linux:7::client",
+                  "product_id" : "7Client-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                  "product_name" : "firefox-0:102.10.0-1.el7_9 as a component of Red Hat Enterprise Linux Client (v. 7)"
+                  },
+               "product_reference" : "firefox-0:102.10.0-1.el7_9",
+               "relates_to_product_reference" : "7Client-7.9.Z",
+               "relation_type" : "Default Component Of"
+               },
+            {
+               "full_product_name" : {
+                  "cpe" : "cpe:/o:redhat:enterprise_linux:7::client",
+                  "product_id" : "7Client-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                  "product_name" : "firefox-0:102.10.0-1.el7_9 as a component of Red Hat Enterprise Linux Client Optional (v. 7)"
+                  },
+               "product_reference" : "firefox-0:102.10.0-1.el7_9",
+               "relates_to_product_reference" : "7Client-optional-7.9.Z",
+               "relation_type" : "Default Component Of"
+               },
+            {
+               "full_product_name" : {
+                  "cpe" : "cpe:/o:redhat:enterprise_linux:7::server",
+                  "product_id" : "7Server-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                  "product_name" : "firefox-0:102.10.0-1.el7_9 as a component of Red Hat Enterprise Linux Server (v. 7)"
+                  },
+               "product_reference" : "firefox-0:102.10.0-1.el7_9",
+               "relates_to_product_reference" : "7Server-7.9.Z",
+               "relation_type" : "Default Component Of"
+               },
+            {
+               "full_product_name" : {
+                  "cpe" : "cpe:/o:redhat:enterprise_linux:7::server",
+                  "product_id" : "7Server-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                  "product_name" : "firefox-0:102.10.0-1.el7_9 as a component of Red Hat Enterprise Linux Server Optional (v. 7)"
+                  },
+               "product_reference" : "firefox-0:102.10.0-1.el7_9",
+               "relates_to_product_reference" : "7Server-optional-7.9.Z",
+               "relation_type" : "Default Component Of"
+               },
+            {
+               "full_product_name" : {
+                  "cpe" : "cpe:/o:redhat:enterprise_linux:7::workstation",
+                  "product_id" : "7Workstation-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                  "product_name" : "firefox-0:102.10.0-1.el7_9 as a component of Red Hat Enterprise Linux Workstation (v. 7)"
+                  },
+               "product_reference" : "firefox-0:102.10.0-1.el7_9",
+               "relates_to_product_reference" : "7Workstation-7.9.Z",
+               "relation_type" : "Default Component Of"
+               },
+            {
+               "full_product_name" : {
+                  "cpe" : "cpe:/o:redhat:enterprise_linux:7::workstation",
+                  "product_id" : "7Workstation-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                  "product_name" : "firefox-0:102.10.0-1.el7_9 as a component of Red Hat Enterprise Linux Workstation Optional (v. 7)"
+                  },
+               "product_reference" : "firefox-0:102.10.0-1.el7_9",
+               "relates_to_product_reference" : "7Workstation-optional-7.9.Z",
+               "relation_type" : "Default Component Of"
+               }
+            ]
+         },
+      "vulnerability" : [
+         {
+            "acknowledgments" : {
+               "acknowledgment" : {
+                  "description" : "Red Hat would like to thank the Mozilla project for reporting this issue. Upstream acknowledges Gabriele Svelto as the original reporter."
+                  }
+               },
+            "cve" : "CVE-2023-1945",
+            "discovery_date" : "2023-04-11T00:00:00Z",
+            "involvements" : {
+               "involvement" : {
+                  "party" : "Vendor",
+                  "status" : "Completed"
+                  }
+               },
+            "notes" : {
+               "note" : "The Mozilla Foundation Security Advisory describes this flaw as:\nUnexpected data returned from the Safe Browsing API could have led to memory corruption and a potentially exploitable crash."
+               },
+            "ordinal" : "1",
+            "product_statuses" : {
+               "status" : {
+                  "product_id" : [
+                     "7Client-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Client-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Server-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Server-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Workstation-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Workstation-optional-7.9.Z:firefox-0:102.10.0-1.el7_9"
+                     ],
+                  "type" : "Fixed"
+                  }
+               },
+            "references" : {
+               "reference" : [
+                  {
+                     "description" : "https://www.cve.org/CVERecord?id=CVE-2023-1945",
+                     "url" : "https://www.cve.org/CVERecord?id=CVE-2023-1945"
+                     },
+                  {
+                     "description" : "https://nvd.nist.gov/vuln/detail/CVE-2023-1945",
+                     "url" : "https://nvd.nist.gov/vuln/detail/CVE-2023-1945"
+                     },
+                  {
+                     "description" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-14/#CVE-2023-1945",
+                     "url" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-14/#CVE-2023-1945"
+                     },
+                  {
+                     "description" : "CVE-2023-1945",
+                     "url" : "https://access.redhat.com/security/cve/CVE-2023-1945"
+                     },
+                  {
+                     "description" : "bz#2186109: Memory Corruption in Safe Browsing Code",
+                     "url" : "https://bugzilla.redhat.com/show_bug.cgi?id=2186109"
+                     }
+                  ]
+               },
+            "release_date" : "2023-04-11T00:00:00Z",
+            "remediations" : {
+               "remediation" : {
+                  "description" : "For details on how to apply this update, which includes the changes described in this advisory, refer to:\nhttps://access.redhat.com/articles/11258\nAfter installing the update, Firefox must be restarted for the changes to take effect.",
+                  "type" : "Vendor Fix",
+                  "url" : "https://access.redhat.com/errata/RHSA-2023:1791"
+                  }
+               },
+            "threats" : {
+               "threat" : {
+                  "description" : "Moderate",
+                  "type" : "Impact"
+                  }
+               }
+            },
+         {
+            "acknowledgments" : {
+               "acknowledgment" : {
+                  "description" : "Red Hat would like to thank the Mozilla project for reporting this issue. Upstream acknowledges Irvan Kurniawan as the original reporter."
+                  }
+               },
+            "cve" : "CVE-2023-1999",
+            "discovery_date" : "2023-04-11T00:00:00Z",
+            "involvements" : {
+               "involvement" : {
+                  "party" : "Vendor",
+                  "status" : "Completed"
+                  }
+               },
+            "notes" : {
+               "note" : "The Mozilla Foundation Security Advisory describes this flaw as:\nA double-free in libwebp could have led to memory corruption and a potentially exploitable crash."
+               },
+            "ordinal" : "2",
+            "product_statuses" : {
+               "status" : {
+                  "product_id" : [
+                     "7Client-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Client-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Server-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Server-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Workstation-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Workstation-optional-7.9.Z:firefox-0:102.10.0-1.el7_9"
+                     ],
+                  "type" : "Fixed"
+                  }
+               },
+            "references" : {
+               "reference" : [
+                  {
+                     "description" : "https://www.cve.org/CVERecord?id=CVE-2023-1999",
+                     "url" : "https://www.cve.org/CVERecord?id=CVE-2023-1999"
+                     },
+                  {
+                     "description" : "https://nvd.nist.gov/vuln/detail/CVE-2023-1999",
+                     "url" : "https://nvd.nist.gov/vuln/detail/CVE-2023-1999"
+                     },
+                  {
+                     "description" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-14/#CVE-2023-1999",
+                     "url" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-14/#CVE-2023-1999"
+                     },
+                  {
+                     "description" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-15/#CVE-2023-1999",
+                     "url" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-15/#CVE-2023-1999"
+                     },
+                  {
+                     "description" : "CVE-2023-1999",
+                     "url" : "https://access.redhat.com/security/cve/CVE-2023-1999"
+                     },
+                  {
+                     "description" : "bz#2186102: Double-free in libwebp",
+                     "url" : "https://bugzilla.redhat.com/show_bug.cgi?id=2186102"
+                     }
+                  ]
+               },
+            "release_date" : "2023-04-11T00:00:00Z",
+            "remediations" : {
+               "remediation" : {
+                  "description" : "For details on how to apply this update, which includes the changes described in this advisory, refer to:\nhttps://access.redhat.com/articles/11258\nAfter installing the update, Firefox must be restarted for the changes to take effect.",
+                  "type" : "Vendor Fix",
+                  "url" : "https://access.redhat.com/errata/RHSA-2023:1791"
+                  }
+               },
+            "threats" : {
+               "threat" : {
+                  "description" : "Important",
+                  "type" : "Impact"
+                  }
+               }
+            },
+         {
+            "acknowledgments" : {
+               "acknowledgment" : {
+                  "description" : "Red Hat would like to thank the Mozilla project for reporting this issue. Upstream acknowledges Irvan Kurniawan as the original reporter."
+                  }
+               },
+            "cve" : "CVE-2023-29533",
+            "discovery_date" : "2023-04-11T00:00:00Z",
+            "involvements" : {
+               "involvement" : {
+                  "party" : "Vendor",
+                  "status" : "Completed"
+                  }
+               },
+            "notes" : {
+               "note" : "The Mozilla Foundation Security Advisory describes this flaw as:\nA website could have obscured the fullscreen notification by using a combination of `window.open`, fullscreen requests, `window.name` assignments, and `setInterval` calls. This could have led to user confusion and possible spoofing attacks."
+               },
+            "ordinal" : "3",
+            "product_statuses" : {
+               "status" : {
+                  "product_id" : [
+                     "7Client-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Client-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Server-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Server-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Workstation-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Workstation-optional-7.9.Z:firefox-0:102.10.0-1.el7_9"
+                     ],
+                  "type" : "Fixed"
+                  }
+               },
+            "references" : {
+               "reference" : [
+                  {
+                     "description" : "https://www.cve.org/CVERecord?id=CVE-2023-29533",
+                     "url" : "https://www.cve.org/CVERecord?id=CVE-2023-29533"
+                     },
+                  {
+                     "description" : "https://nvd.nist.gov/vuln/detail/CVE-2023-29533",
+                     "url" : "https://nvd.nist.gov/vuln/detail/CVE-2023-29533"
+                     },
+                  {
+                     "description" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-14/#CVE-2023-29533",
+                     "url" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-14/#CVE-2023-29533"
+                     },
+                  {
+                     "description" : "CVE-2023-29533",
+                     "url" : "https://access.redhat.com/security/cve/CVE-2023-29533"
+                     },
+                  {
+                     "description" : "bz#2186101: Fullscreen notification obscured",
+                     "url" : "https://bugzilla.redhat.com/show_bug.cgi?id=2186101"
+                     }
+                  ]
+               },
+            "release_date" : "2023-04-11T00:00:00Z",
+            "remediations" : {
+               "remediation" : {
+                  "description" : "For details on how to apply this update, which includes the changes described in this advisory, refer to:\nhttps://access.redhat.com/articles/11258\nAfter installing the update, Firefox must be restarted for the changes to take effect.",
+                  "type" : "Vendor Fix",
+                  "url" : "https://access.redhat.com/errata/RHSA-2023:1791"
+                  }
+               },
+            "threats" : {
+               "threat" : {
+                  "description" : "Important",
+                  "type" : "Impact"
+                  }
+               }
+            },
+         {
+            "acknowledgments" : {
+               "acknowledgment" : {
+                  "description" : "Red Hat would like to thank the Mozilla project for reporting this issue. Upstream acknowledges Lukas Bernhard as the original reporter."
+                  }
+               },
+            "cve" : "CVE-2023-29535",
+            "discovery_date" : "2023-04-11T00:00:00Z",
+            "involvements" : {
+               "involvement" : {
+                  "party" : "Vendor",
+                  "status" : "Completed"
+                  }
+               },
+            "notes" : {
+               "note" : "The Mozilla Foundation Security Advisory describes this flaw as:\nFollowing a Garbage Collector compaction, weak maps may have been accessed before they were correctly traced. This resulted in memory corruption and a potentially exploitable crash."
+               },
+            "ordinal" : "4",
+            "product_statuses" : {
+               "status" : {
+                  "product_id" : [
+                     "7Client-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Client-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Server-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Server-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Workstation-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Workstation-optional-7.9.Z:firefox-0:102.10.0-1.el7_9"
+                     ],
+                  "type" : "Fixed"
+                  }
+               },
+            "references" : {
+               "reference" : [
+                  {
+                     "description" : "https://www.cve.org/CVERecord?id=CVE-2023-29535",
+                     "url" : "https://www.cve.org/CVERecord?id=CVE-2023-29535"
+                     },
+                  {
+                     "description" : "https://nvd.nist.gov/vuln/detail/CVE-2023-29535",
+                     "url" : "https://nvd.nist.gov/vuln/detail/CVE-2023-29535"
+                     },
+                  {
+                     "description" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-14/#CVE-2023-29535",
+                     "url" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-14/#CVE-2023-29535"
+                     },
+                  {
+                     "description" : "CVE-2023-29535",
+                     "url" : "https://access.redhat.com/security/cve/CVE-2023-29535"
+                     },
+                  {
+                     "description" : "bz#2186103: Potential Memory Corruption following Garbage Collector compaction",
+                     "url" : "https://bugzilla.redhat.com/show_bug.cgi?id=2186103"
+                     }
+                  ]
+               },
+            "release_date" : "2023-04-11T00:00:00Z",
+            "remediations" : {
+               "remediation" : {
+                  "description" : "For details on how to apply this update, which includes the changes described in this advisory, refer to:\nhttps://access.redhat.com/articles/11258\nAfter installing the update, Firefox must be restarted for the changes to take effect.",
+                  "type" : "Vendor Fix",
+                  "url" : "https://access.redhat.com/errata/RHSA-2023:1791"
+                  }
+               },
+            "threats" : {
+               "threat" : {
+                  "description" : "Important",
+                  "type" : "Impact"
+                  }
+               }
+            },
+         {
+            "acknowledgments" : {
+               "acknowledgment" : {
+                  "description" : "Red Hat would like to thank the Mozilla project for reporting this issue. Upstream acknowledges zx from qriousec as the original reporter."
+                  }
+               },
+            "cve" : "CVE-2023-29536",
+            "discovery_date" : "2023-04-11T00:00:00Z",
+            "involvements" : {
+               "involvement" : {
+                  "party" : "Vendor",
+                  "status" : "Completed"
+                  }
+               },
+            "notes" : {
+               "note" : "The Mozilla Foundation Security Advisory describes this flaw as:\nAn attacker could cause the memory manager to incorrectly free a pointer that addresses attacker-controlled memory, resulting in an assertion, memory corruption, or a potentially exploitable crash."
+               },
+            "ordinal" : "5",
+            "product_statuses" : {
+               "status" : {
+                  "product_id" : [
+                     "7Client-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Client-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Server-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Server-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Workstation-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Workstation-optional-7.9.Z:firefox-0:102.10.0-1.el7_9"
+                     ],
+                  "type" : "Fixed"
+                  }
+               },
+            "references" : {
+               "reference" : [
+                  {
+                     "description" : "https://www.cve.org/CVERecord?id=CVE-2023-29536",
+                     "url" : "https://www.cve.org/CVERecord?id=CVE-2023-29536"
+                     },
+                  {
+                     "description" : "https://nvd.nist.gov/vuln/detail/CVE-2023-29536",
+                     "url" : "https://nvd.nist.gov/vuln/detail/CVE-2023-29536"
+                     },
+                  {
+                     "description" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-14/#CVE-2023-29536",
+                     "url" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-14/#CVE-2023-29536"
+                     },
+                  {
+                     "description" : "CVE-2023-29536",
+                     "url" : "https://access.redhat.com/security/cve/CVE-2023-29536"
+                     },
+                  {
+                     "description" : "bz#2186104: Invalid free from JavaScript code",
+                     "url" : "https://bugzilla.redhat.com/show_bug.cgi?id=2186104"
+                     }
+                  ]
+               },
+            "release_date" : "2023-04-11T00:00:00Z",
+            "remediations" : {
+               "remediation" : {
+                  "description" : "For details on how to apply this update, which includes the changes described in this advisory, refer to:\nhttps://access.redhat.com/articles/11258\nAfter installing the update, Firefox must be restarted for the changes to take effect.",
+                  "type" : "Vendor Fix",
+                  "url" : "https://access.redhat.com/errata/RHSA-2023:1791"
+                  }
+               },
+            "threats" : {
+               "threat" : {
+                  "description" : "Important",
+                  "type" : "Impact"
+                  }
+               }
+            },
+         {
+            "acknowledgments" : {
+               "acknowledgment" : {
+                  "description" : "Red Hat would like to thank the Mozilla project for reporting this issue. Upstream acknowledges Trung Pham as the original reporter."
+                  }
+               },
+            "cve" : "CVE-2023-29539",
+            "discovery_date" : "2023-04-11T00:00:00Z",
+            "involvements" : {
+               "involvement" : {
+                  "party" : "Vendor",
+                  "status" : "Completed"
+                  }
+               },
+            "notes" : {
+               "note" : "The Mozilla Foundation Security Advisory describes this flaw as:\nWhen handling the filename directive in the Content-Disposition header, the filename would be truncated if the filename contained a NULL character. This could have led to reflected file download attacks potentially tricking users to install malware."
+               },
+            "ordinal" : "6",
+            "product_statuses" : {
+               "status" : {
+                  "product_id" : [
+                     "7Client-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Client-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Server-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Server-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Workstation-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Workstation-optional-7.9.Z:firefox-0:102.10.0-1.el7_9"
+                     ],
+                  "type" : "Fixed"
+                  }
+               },
+            "references" : {
+               "reference" : [
+                  {
+                     "description" : "https://www.cve.org/CVERecord?id=CVE-2023-29539",
+                     "url" : "https://www.cve.org/CVERecord?id=CVE-2023-29539"
+                     },
+                  {
+                     "description" : "https://nvd.nist.gov/vuln/detail/CVE-2023-29539",
+                     "url" : "https://nvd.nist.gov/vuln/detail/CVE-2023-29539"
+                     },
+                  {
+                     "description" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-14/#CVE-2023-29539",
+                     "url" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-14/#CVE-2023-29539"
+                     },
+                  {
+                     "description" : "CVE-2023-29539",
+                     "url" : "https://access.redhat.com/security/cve/CVE-2023-29539"
+                     },
+                  {
+                     "description" : "bz#2186105: Content-Disposition filename truncation leads to Reflected File Download",
+                     "url" : "https://bugzilla.redhat.com/show_bug.cgi?id=2186105"
+                     }
+                  ]
+               },
+            "release_date" : "2023-04-11T00:00:00Z",
+            "remediations" : {
+               "remediation" : {
+                  "description" : "For details on how to apply this update, which includes the changes described in this advisory, refer to:\nhttps://access.redhat.com/articles/11258\nAfter installing the update, Firefox must be restarted for the changes to take effect.",
+                  "type" : "Vendor Fix",
+                  "url" : "https://access.redhat.com/errata/RHSA-2023:1791"
+                  }
+               },
+            "threats" : {
+               "threat" : {
+                  "description" : "Moderate",
+                  "type" : "Impact"
+                  }
+               }
+            },
+         {
+            "acknowledgments" : {
+               "acknowledgment" : {
+                  "description" : "Red Hat would like to thank the Mozilla project for reporting this issue. Upstream acknowledges Ameen Basha M K as the original reporter."
+                  }
+               },
+            "cve" : "CVE-2023-29541",
+            "discovery_date" : "2023-04-11T00:00:00Z",
+            "involvements" : {
+               "involvement" : {
+                  "party" : "Vendor",
+                  "status" : "Completed"
+                  }
+               },
+            "notes" : {
+               "note" : "The Mozilla Foundation Security Advisory describes this flaw as:\nFirefox did not properly handle downloads of files ending in `.desktop`, which can be interpreted to run attacker-controlled commands.\n*This bug only affects Firefox for Linux on certain Distributions. Other operating systems are unaffected, and Mozilla is unable to enumerate all affected Linux Distributions.*"
+               },
+            "ordinal" : "7",
+            "product_statuses" : {
+               "status" : {
+                  "product_id" : [
+                     "7Client-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Client-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Server-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Server-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Workstation-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Workstation-optional-7.9.Z:firefox-0:102.10.0-1.el7_9"
+                     ],
+                  "type" : "Fixed"
+                  }
+               },
+            "references" : {
+               "reference" : [
+                  {
+                     "description" : "https://www.cve.org/CVERecord?id=CVE-2023-29541",
+                     "url" : "https://www.cve.org/CVERecord?id=CVE-2023-29541"
+                     },
+                  {
+                     "description" : "https://nvd.nist.gov/vuln/detail/CVE-2023-29541",
+                     "url" : "https://nvd.nist.gov/vuln/detail/CVE-2023-29541"
+                     },
+                  {
+                     "description" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-14/#CVE-2023-29541",
+                     "url" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-14/#CVE-2023-29541"
+                     },
+                  {
+                     "description" : "CVE-2023-29541",
+                     "url" : "https://access.redhat.com/security/cve/CVE-2023-29541"
+                     },
+                  {
+                     "description" : "bz#2186106: Files with malicious extensions could have been downloaded unsafely on Linux",
+                     "url" : "https://bugzilla.redhat.com/show_bug.cgi?id=2186106"
+                     }
+                  ]
+               },
+            "release_date" : "2023-04-11T00:00:00Z",
+            "remediations" : {
+               "remediation" : {
+                  "description" : "For details on how to apply this update, which includes the changes described in this advisory, refer to:\nhttps://access.redhat.com/articles/11258\nAfter installing the update, Firefox must be restarted for the changes to take effect.",
+                  "type" : "Vendor Fix",
+                  "url" : "https://access.redhat.com/errata/RHSA-2023:1791"
+                  }
+               },
+            "threats" : {
+               "threat" : {
+                  "description" : "Moderate",
+                  "type" : "Impact"
+                  }
+               }
+            },
+         {
+            "acknowledgments" : {
+               "acknowledgment" : {
+                  "description" : "Red Hat would like to thank the Mozilla project for reporting this issue. Upstream acknowledges JunYoung Park as the original reporter."
+                  }
+               },
+            "cve" : "CVE-2023-29548",
+            "discovery_date" : "2023-04-11T00:00:00Z",
+            "involvements" : {
+               "involvement" : {
+                  "party" : "Vendor",
+                  "status" : "Completed"
+                  }
+               },
+            "notes" : {
+               "note" : "The Mozilla Foundation Security Advisory describes this flaw as:\nA wrong lowering instruction in the ARM64 Ion compiler resulted in a wrong optimization result."
+               },
+            "ordinal" : "8",
+            "product_statuses" : {
+               "status" : {
+                  "product_id" : [
+                     "7Client-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Client-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Server-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Server-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Workstation-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Workstation-optional-7.9.Z:firefox-0:102.10.0-1.el7_9"
+                     ],
+                  "type" : "Fixed"
+                  }
+               },
+            "references" : {
+               "reference" : [
+                  {
+                     "description" : "https://www.cve.org/CVERecord?id=CVE-2023-29548",
+                     "url" : "https://www.cve.org/CVERecord?id=CVE-2023-29548"
+                     },
+                  {
+                     "description" : "https://nvd.nist.gov/vuln/detail/CVE-2023-29548",
+                     "url" : "https://nvd.nist.gov/vuln/detail/CVE-2023-29548"
+                     },
+                  {
+                     "description" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-14/#CVE-2023-29548",
+                     "url" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-14/#CVE-2023-29548"
+                     },
+                  {
+                     "description" : "CVE-2023-29548",
+                     "url" : "https://access.redhat.com/security/cve/CVE-2023-29548"
+                     },
+                  {
+                     "description" : "bz#2186110: Incorrect optimization result on ARM64",
+                     "url" : "https://bugzilla.redhat.com/show_bug.cgi?id=2186110"
+                     }
+                  ]
+               },
+            "release_date" : "2023-04-11T00:00:00Z",
+            "remediations" : {
+               "remediation" : {
+                  "description" : "For details on how to apply this update, which includes the changes described in this advisory, refer to:\nhttps://access.redhat.com/articles/11258\nAfter installing the update, Firefox must be restarted for the changes to take effect.",
+                  "type" : "Vendor Fix",
+                  "url" : "https://access.redhat.com/errata/RHSA-2023:1791"
+                  }
+               },
+            "threats" : {
+               "threat" : {
+                  "description" : "Low",
+                  "type" : "Impact"
+                  }
+               }
+            },
+         {
+            "acknowledgments" : {
+               "acknowledgment" : {
+                  "description" : "Red Hat would like to thank the Mozilla project for reporting this issue. Upstream acknowledges Mozilla developers and community as the original reporter."
+                  }
+               },
+            "cve" : "CVE-2023-29550",
+            "discovery_date" : "2023-04-11T00:00:00Z",
+            "involvements" : {
+               "involvement" : {
+                  "party" : "Vendor",
+                  "status" : "Completed"
+                  }
+               },
+            "notes" : {
+               "note" : "The Mozilla Foundation Security Advisory describes this flaw as:\nMozilla developers Andrew Osmond, Sebastian Hengst, Andrew McCreight, and the Mozilla Fuzzing Team reported memory safety bugs present in Firefox 111 and Firefox ESR 102.9. Some of these bugs showed evidence of memory corruption and we presume that with enough effort some of these could have been exploited to run arbitrary code."
+               },
+            "ordinal" : "9",
+            "product_statuses" : {
+               "status" : {
+                  "product_id" : [
+                     "7Client-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Client-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Server-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Server-optional-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Workstation-7.9.Z:firefox-0:102.10.0-1.el7_9",
+                     "7Workstation-optional-7.9.Z:firefox-0:102.10.0-1.el7_9"
+                     ],
+                  "type" : "Fixed"
+                  }
+               },
+            "references" : {
+               "reference" : [
+                  {
+                     "description" : "https://www.cve.org/CVERecord?id=CVE-2023-29550",
+                     "url" : "https://www.cve.org/CVERecord?id=CVE-2023-29550"
+                     },
+                  {
+                     "description" : "https://nvd.nist.gov/vuln/detail/CVE-2023-29550",
+                     "url" : "https://nvd.nist.gov/vuln/detail/CVE-2023-29550"
+                     },
+                  {
+                     "description" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-14/#CVE-2023-29550",
+                     "url" : "https://www.mozilla.org/en-US/security/advisories/mfsa2023-14/#CVE-2023-29550"
+                     },
+                  {
+                     "description" : "CVE-2023-29550",
+                     "url" : "https://access.redhat.com/security/cve/CVE-2023-29550"
+                     },
+                  {
+                     "description" : "bz#2186111: Memory safety bugs fixed in Firefox 112 and Firefox ESR 102.10",
+                     "url" : "https://bugzilla.redhat.com/show_bug.cgi?id=2186111"
+                     }
+                  ]
+               },
+            "release_date" : "2023-04-11T00:00:00Z",
+            "remediations" : {
+               "remediation" : {
+                  "description" : "For details on how to apply this update, which includes the changes described in this advisory, refer to:\nhttps://access.redhat.com/articles/11258\nAfter installing the update, Firefox must be restarted for the changes to take effect.",
+                  "type" : "Vendor Fix",
+                  "url" : "https://access.redhat.com/errata/RHSA-2023:1791"
+                  }
+               },
+            "threats" : {
+               "threat" : {
+                  "description" : "Important",
+                  "type" : "Impact"
+                  }
+               }
+            }
+         ]
+      }
+   }

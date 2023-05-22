@@ -1,0 +1,312 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Net::CVE - Fetch CVE (Common Vulnerabilities and Exposures) information from cve.org</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:hmbrand@cpan.org" />
+</head>
+
+<body>
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a></li>
+  <li><a href="#METHODS">METHODS</a>
+    <ul>
+      <li><a href="#new">new</a></li>
+      <li><a href="#get">get</a></li>
+      <li><a href="#data">data</a></li>
+      <li><a href="#summary">summary</a></li>
+      <li><a href="#status">status</a></li>
+      <li><a href="#vendor">vendor</a></li>
+      <li><a href="#product">product</a></li>
+      <li><a href="#platforms">platforms</a></li>
+    </ul>
+  </li>
+  <li><a href="#BUGS">BUGS</a></li>
+  <li><a href="#TODO">TODO</a></li>
+  <li><a href="#SEE-ALSO">SEE ALSO</a></li>
+  <li><a href="#AUTHOR">AUTHOR</a></li>
+  <li><a href="#COPYRIGHT-AND-LICENSE">COPYRIGHT AND LICENSE</a></li>
+  <li><a href="#DISCLAIMER-OF-WARRANTY">DISCLAIMER OF WARRANTY</a></li>
+</ul>
+
+<h1 id="NAME">NAME</h1>
+
+<p>Net::CVE - Fetch CVE (Common Vulnerabilities and Exposures) information from cve.org</p>
+
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
+<pre><code>use Net::CVE;
+
+my $cr = Net::CVE-&gt;new ();
+
+$cr-&gt;get (&quot;CVE-2022-12345&quot;);
+my $full_report = $cr-&gt;data;
+my $summary     = $cr-&gt;summary;
+
+use Data::Peek;
+DDumper $cr-&gt;summary (&quot;CVE-2022-12345&quot;);</code></pre>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>This module provides a Perl interface to retrieve information from the <a href="https://www.cve.org/Downloads">CVE database</a> provided by <a href="https://cve.org">https://cve.org</a> based on a CVE tag.</p>
+
+<h1 id="METHODS">METHODS</h1>
+
+<h2 id="new">new</h2>
+
+<pre><code>my $reporter = CVE-&gt;new (
+    url  =&gt; &quot;https://cveawg.mitre.org/api/cve&quot;,
+    ua   =&gt; undef,
+    lang =&gt; &quot;en&quot;,
+    );</code></pre>
+
+<p>Instantiates a new object. All attributes are optional.</p>
+
+<dl>
+
+<dt id="url">url</dt>
+<dd>
+
+<p>Base url for REST API</p>
+
+</dd>
+<dt id="ua">ua</dt>
+<dd>
+
+<p>User agent. Needs to know about <code>-&gt;get</code>. Defaults to <a>HTTP::Tiny</a>. Initialized on first use.</p>
+
+<pre><code>my $reporter = CVE-&gt;new (ua =&gt; HTTP::Tiny-&gt;new);</code></pre>
+
+<p>Other agents not yet tested, so they might fail.</p>
+
+</dd>
+<dt id="lang">lang</dt>
+<dd>
+
+<p>Set preferred language for <a href="#summary">&quot;summary&quot;</a>. Defaults to <code>en</code>.</p>
+
+<p>If the preferred language is present in descriptions use that. If it is not, use <code>en</code>. If that is also not present, use the first language found.</p>
+
+</dd>
+</dl>
+
+<h2 id="get">get</h2>
+
+<pre><code>$reporter-&gt;get (&quot;CVE-2022-26928&quot;);
+$reporter-&gt;get (&quot;2022-26928&quot;);
+$reporter-&gt;get (&quot;Files/CVE-2022-26928.json&quot;);</code></pre>
+
+<p>Fetches the CVE data for a given tag. On success stores the results internally. Returns the object. The leading <code>CVE-</code> is optional.</p>
+
+<p>If the argument is a non-empty file, that is parsed instead of fetching the information from the internet.</p>
+
+<p>The decoded information is stored internally and will be re-used for other methods.</p>
+
+<h2 id="data">data</h2>
+
+<pre><code>my $info = $reporter-&gt;data;</code></pre>
+
+<p>Returns the data structure from the last successful fetch, <code>undef</code> if none.</p>
+
+<p>Giving an argument enables you to skip the <a href="#get">&quot;get&quot;</a> call, which is implicit, so</p>
+
+<pre><code>my $info = $reporter-&gt;data (&quot;CVE-2022-26928&quot;);</code></pre>
+
+<p>is identical to</p>
+
+<pre><code>my $info = $reporter-&gt;get (&quot;CVE-2022-26928&quot;)-&gt;data;</code></pre>
+
+<p>or</p>
+
+<pre><code>$reporter-&gt;get (&quot;CVE-2022-26928&quot;);
+my $info = $reporter-&gt;data;</code></pre>
+
+<h2 id="summary">summary</h2>
+
+<pre><code>my $info = $reporter-&gt;summary;
+my $info = $reporter-&gt;summary (&quot;CVE-2022-26928&quot;);</code></pre>
+
+<p>Returns a hashref with basic information from the last successful fetch, <code>undef</code> if none.</p>
+
+<p>Giving an argument enables you to skip the <a href="#get">&quot;get&quot;</a> call, which is implicit, so</p>
+
+<pre><code>my $info = $reporter-&gt;summary (&quot;CVE-2022-26928&quot;);</code></pre>
+
+<p>is identical to</p>
+
+<pre><code>my $info = $reporter-&gt;get (&quot;CVE-2022-26928&quot;)-&gt;summary;</code></pre>
+
+<p>or</p>
+
+<pre><code>$reporter-&gt;get (&quot;CVE-2022-26928&quot;);
+my $info = $reporter-&gt;summary;</code></pre>
+
+<p>The returned hash looks somewhat like this</p>
+
+<pre><code>{ date        =&gt; &quot;2022-09-13T18:41:25&quot;,
+  description =&gt; &quot;Windows Photo Import API Elevation of Privilege Vulnerability&quot;,
+  id          =&gt; &quot;CVE-2022-26928&quot;,
+  problem     =&gt; &quot;Elevation of Privilege&quot;,
+  score       =&gt; &quot;7&quot;,
+  severity    =&gt; &quot;high&quot;,
+  status       =&gt; &quot;PUBLISHED&quot;,
+  vendor      =&gt; [ &quot;Microsoft&quot; ]
+  platforms   =&gt; [ &quot;32-bit Systems&quot;,
+      &quot;ARM64-based Systems&quot;,
+      &quot;x64-based Systems&quot;,
+      ],
+  product     =&gt; [
+      &quot;Windows 10 Version 1507&quot;,
+      &quot;Windows 10 Version 1607&quot;,
+      &quot;Windows 10 Version 1809&quot;,
+      &quot;Windows 10 Version 20H2&quot;,
+      &quot;Windows 10 Version 21H1&quot;,
+      &quot;Windows 10 Version 21H2&quot;,
+      &quot;Windows 11 version 21H2&quot;,
+      &quot;Windows Server 2016&quot;,
+      &quot;Windows Server 2019&quot;,
+      &quot;Windows Server 2022&quot;,
+      ],
+  }</code></pre>
+
+<p>As this is work in progress, likely to be changed</p>
+
+<h2 id="status">status</h2>
+
+<pre><code>my $status = $reporter-&gt;status;</code></pre>
+
+<p>Returns the status of the CVE, most likely <code>PUBLISHED</code>.</p>
+
+<h2 id="vendor">vendor</h2>
+
+<pre><code>my @vendor  = $reporter-&gt;vendor;
+my $vendors = $reporter-&gt;vendor;</code></pre>
+
+<p>Returns the list of vendors for the affected parts of the CVE. In scalar context a string where the (sorted) list of unique vendors is joined by <code>, </code> in list context the (sorted) list itself.</p>
+
+<h2 id="product">product</h2>
+
+<pre><code>my @product  = $reporter-&gt;product;
+my $products = $reporter-&gt;product;</code></pre>
+
+<p>Returns the list of products for the affected parts of the CVE. In scalar context a string where the (sorted) list of unique products is joined by <code>, </code> in list context the (sorted) list itself.</p>
+
+<h2 id="platforms">platforms</h2>
+
+<pre><code>my @platform  = $reporter-&gt;platforms;
+my $platforms = $reporter-&gt;platforms;</code></pre>
+
+<p>Returns the list of platforms for the affected parts of the CVE. In scalar context a string where the (sorted) list of unique platforms is joined by <code>, </code> in list context the (sorted) list itself.</p>
+
+<h1 id="BUGS">BUGS</h1>
+
+<p>None so far</p>
+
+<h1 id="TODO">TODO</h1>
+
+<dl>
+
+<dt id="Better-error-reporting">Better error reporting</dt>
+<dd>
+
+<p>Obviously</p>
+
+</dd>
+<dt id="Tests">Tests</dt>
+<dd>
+
+<p>There are none yet</p>
+
+</dd>
+<dt id="Meta-stuff">Meta-stuff</dt>
+<dd>
+
+<p>Readme, Changelog, Makefile.PL, ...</p>
+
+</dd>
+<dt id="Fallback-to-Net::NVD">Fallback to Net::NVD</dt>
+<dd>
+
+<p>Optionally. It does not (yet) provide vendor, product and platforms. It however provides nice search capabilities.</p>
+
+</dd>
+<dt id="RHSA-support">RHSA support</dt>
+<dd>
+
+<p>Extend to return results for <code>RHSA-2023:1791</code> type vulnerability tags.</p>
+
+<pre><code>https://access.redhat.com/errata/RHSA-2023:1791
+https://access.redhat.com/hydra/rest/securitydata/crf/RHSA-2023:1791.json</code></pre>
+
+<p>The CRF API provides the list of CVE&#39;s related to this tag:</p>
+
+<pre><code>my $url = &quot;https://access.redhat.com/hydra/rest/securitydata/crf&quot;;
+my $crf = decode_json ($ua-&gt;get (&quot;$url/RHSA-2023:1791.json&quot;));
+my @cve = map { $_-&gt;{cve} }
+          @{$crf-&gt;{cvrfdoc}{vulnerability} || []}</code></pre>
+
+<p>Will set <code>@cve</code> to</p>
+
+<pre><code>qw( CVE-2023-1945  CVE-2023-1999  CVE-2023-29533 CVE-2023-29535
+    CVE-2023-29536 CVE-2023-29539 CVE-2023-29541 CVE-2023-29548
+    CVE-2023-29550 );</code></pre>
+
+<p>See <a href="https://access.redhat.com/documentation/en-us/red_hat_security_data_api/1.0/html-single/red_hat_security_data_api/index">the API documentation</a>.</p>
+
+</dd>
+</dl>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<dl>
+
+<dt id="CVE-search">CVE search</dt>
+<dd>
+
+<p><a href="https://cve.org">https://cve.org</a> and <a href="https://cve.mitre.org/cve/search_cve_list.html">https://cve.mitre.org/cve/search_cve_list.html</a></p>
+
+</dd>
+<dt id="Net::OSV"><a>Net::OSV</a></dt>
+<dd>
+
+<p>Returns OpenSource Vulnerabilities.</p>
+
+</dd>
+<dt id="CVE-database">CVE database</dt>
+<dd>
+
+<p><a href="https://www.cvedetails.com/">https://www.cvedetails.com/</a></p>
+
+</dd>
+</dl>
+
+<h1 id="AUTHOR">AUTHOR</h1>
+
+<p>H.Merijn Brand &lt;hmbrand@cpan.org&gt;</p>
+
+<h1 id="COPYRIGHT-AND-LICENSE">COPYRIGHT AND LICENSE</h1>
+
+<p>Copyright (C) 2023-2023 H.Merijn Brand</p>
+
+<p>This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself. See <a>perlartistic</a>.</p>
+
+<p>This interface uses data from the CVE API but is not endorsed by any of the CVE partners.</p>
+
+<h1 id="DISCLAIMER-OF-WARRANTY">DISCLAIMER OF WARRANTY</h1>
+
+<p>BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR THE SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE SOFTWARE &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE SOFTWARE IS WITH YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR, OR CORRECTION.</p>
+
+<p>IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR REDISTRIBUTE THE SOFTWARE AS PERMITTED BY THE ABOVE LICENSE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE SOFTWARE (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+
+
+</body>
+
+</html>
+
+
