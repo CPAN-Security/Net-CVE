@@ -189,12 +189,12 @@ Net::CVE - Fetch CVE (Common Vulnerabilities and Exposures) information from cve
 
  my $cr = Net::CVE->new ();
 
- $cr->get ("CVE-2022-12345");
+ $cr->get ("CVE-2022-26928");
  my $full_report = $cr->data;
  my $summary     = $cr->summary;
 
  use Data::Peek;
- DDumper $cr->summary ("CVE-2022-12345");
+ DDumper $cr->summary ("CVE-2022-26928");
 
 =head1 DESCRIPTION
 

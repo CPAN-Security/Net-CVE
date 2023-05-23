@@ -1,5 +1,7 @@
 0.003 - 2023-05-23, H.Merijn Brand
     * Shortcuts
+    * Use existing CVE in SYNOPSIS (szabgab, issue#1)
+    * GitHub Actions (szabgab, issue#2)
 
 0.002 - 2023-05-23, H.Merijn Brand
     * Tests
