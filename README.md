@@ -43,6 +43,10 @@ or get it as a tgz:
  $ wget --output-document=Net-CVE-git.tgz \
         https://github.com/Tux/Net-CVE/archive/main.tar.gz
 
+### Contibuting
+
+New ideas and fixes welcome. Please read (this guide)[CONTRIBUTING.md]
+
 ### Author
 
 H.Merijn Brand <hmbrand@cpan.org>
