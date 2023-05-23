@@ -5,7 +5,7 @@ package Net::CVE;
 use 5.014002;
 use warnings;
 
-our $VERSION = "0.002"; # 20230523
+our $VERSION = "0.003"; # 20230523
 
 use Carp;
 use HTTP::Tiny;
@@ -39,6 +39,7 @@ sub new {
 
 sub get {
     my ($self, $cve) = @_;
+    ref $self or $self = __PACKAGE__->new ();
     $self->{data} = {};
     $cve or return $self;
     $cve =~ s/^(?=[0-9])/CVE-/;
@@ -79,12 +80,14 @@ sub get {
 
 sub data {
     my $self = shift;
+    ref $self or $self = __PACKAGE__->new ();
     @_ and $self->get (@_);
     $self->{data};
     } # data
 
 sub summary {
     my $self = shift;
+    ref $self or $self = __PACKAGE__->new ();
     @_ and $self->get (@_);
     my $j   = $self->{data}         or croak "summary only available after get";
     my $cna = $j->{containers}{cna} or return +{};
@@ -250,6 +253,15 @@ information from the internet.
 The decoded information is stored internally and will be re-used for other
 methods.
 
+C<get> returns the object and allows to omit a call to C<new> which will be
+implicit but does not allow attributes
+
+ my $reporter = Net::CVE->get ("2022-26928");
+
+is a shortcut to
+
+ my $reporter = Net::CVE->new->get ("2022-26928");
+
 =head2 data
 
  my $info = $reporter->data;
@@ -268,6 +280,10 @@ or
 
  $reporter->get ("CVE-2022-26928");
  my $info = $reporter->data;
+
+or even, whithout an object
+
+ my $info = Net::CVE->data ("CVE-2022-26928");
 
 =head2 summary
 
@@ -289,6 +305,10 @@ or
 
  $reporter->get ("CVE-2022-26928");
  my $info = $reporter->summary;
+
+or even, whithout an object
+
+ my $info = Net::CVE->summary ("CVE-2022-26928");
 
 The returned hash looks somewhat like this
 

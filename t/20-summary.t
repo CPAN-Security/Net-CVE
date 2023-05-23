@@ -8,13 +8,13 @@ use Test::Warnings;
 
 use Net::CVE;
 
-ok (my $cr = Net::CVE->new,			"New reporter");
+my $jf = "Files/CVE-2022-26928.json";
 
-ok ($cr->get ("Files/CVE-2022-26928.json"),	"Read stored report");
+ok (my $cr = Net::CVE->new,	"New reporter");
+ok ($cr->get ($jf),		"Read stored report");
+ok (my $r = $cr->summary,	"Generate summary");
 
-ok (my $r = $cr->summary,			"Generate summary");
-
-is_deeply ($r, {
+my $expect = {
     date        => "2022-09-13T18:41:25",
     description => "Windows Photo Import API Elevation of Privilege Vulnerability",
     id          => "CVE-2022-26928",
@@ -40,6 +40,11 @@ is_deeply ($r, {
     severity    => "high",
     status      => "PUBLISHED",
     vendor      => [ "Microsoft" ],
-    }, "Report returned a summary");
+    };
+
+is_deeply ($r, $expect, "Report returned a summary");
+
+is_deeply (Net::CVE->get ($jf)->summary, $expect, "->get->summary (file)");
+is_deeply (Net::CVE->summary ($jf),      $expect, "->summary (file)");
 
 done_testing;
