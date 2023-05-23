@@ -5,14 +5,7 @@ package Net::CVE;
 use 5.014002;
 use warnings;
 
-our $VERSION = "0.001"; # 20230522
-our $CMD = $0 =~ s{.*/}{}r;
-
-sub usage {
-    my $err = shift and select STDERR;
-    say "usage: $CMD ...";
-    exit $err;
-    } # usage
+our $VERSION = "0.002"; # 20230523
 
 use Carp;
 use HTTP::Tiny;
@@ -96,6 +89,10 @@ sub summary {
     my $j   = $self->{data}         or croak "summary only available after get";
     my $cna = $j->{containers}{cna} or return +{};
     #y $weak     = ... weaknesses [{ description [{ lang => "en", value => "CWE-123"}]
+
+    my $severity = join ", " => grep { length } map { $_->{cvssV3_1}{baseSeverity}            } @{$cna->{metrics}      || []};
+    my $score    = join ", " => grep { length } map { $_->{cvssV3_1}{baseScore}               } @{$cna->{metrics}      || []};
+
     my %desc;
     for (@{$cna->{descriptions} || []}) {
 	my $d = $_->{value} or next;
@@ -106,10 +103,18 @@ sub summary {
        $lang   //= first { m/\b  en           /ix } @lang;
        $lang   //= $lang[0];
     my $desc     = join "\n" => @{$desc{$lang}};
-    my $severity = join ", " => grep { length } map { $_->{cvssV3_1}{baseSeverity}            } @{$cna->{metrics}      || []};
-    my $score    = join ", " => grep { length } map { $_->{cvssV3_1}{baseScore}               } @{$cna->{metrics}      || []};
-    my @pt       = map { @{$_->{descriptions} || []}                                          } @{$cna->{problemTypes} || []};
-    my $problem  = join "\n" => map { $_->{description} } @pt;
+
+    my %problem;
+    for (map { @{$_->{descriptions} || []} } @{$cna->{problemTypes} || []}) {
+	my $d = $_->{description} or next;
+	push @{$problem{$_->{lang}}} => $d;
+	}
+    @lang       = sort keys %problem;
+    $lang       = first { m/\b $self->{lang} /ix } @lang;
+    $lang     //= first { m/\b  en           /ix } @lang;
+    $lang     //= $lang[0];
+    my $problem = join "\n" => @{$problem{$lang}};
+
     {	id          => $j->{cveMetadata}{cveId},
 	date        => $j->{cveMetadata}{datePublished},
 	description => $desc,

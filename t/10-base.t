@@ -10,9 +10,17 @@ use Net::CVE;
 
 my $v = $Net::CVE::VERSION or BAIL_OUT ("Net::CVE does not return a VERSION");
 
-ok  ($v,			"Net::CVE-$v");
+ok  ($v,				"Net::CVE-$v");
 
-ok  (my $cr = Net::CVE->new,	"New reporter");
-isa_ok ($cr, "Net::CVE",	"Of class Net::CVE");
+ok  (my $cr = Net::CVE->new,		"New reporter");
+isa_ok ($cr, "Net::CVE",		"Of class Net::CVE");
+
+is  (Net::CVE->Version, $v,		"Version");
+is  (Net::CVE->VERSION, $v,		"VERSION");
+
+ok  (Net::CVE->new,			"new");
+ok  (Net::CVE->new (),			"new ()");
+ok  (Net::CVE->new (lang => "nl"),	"new (lang => nl)");
+ok  (Net::CVE->new ({ lang => "nl" }),	"new ({ lang => nl })");
 
 done_testing;
