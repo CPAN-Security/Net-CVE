@@ -25,6 +25,7 @@
       <li><a href="#vendor">vendor</a></li>
       <li><a href="#product">product</a></li>
       <li><a href="#platforms">platforms</a></li>
+      <li><a href="#diag">diag</a></li>
     </ul>
   </li>
   <li><a href="#BUGS">BUGS</a></li>
@@ -45,12 +46,14 @@
 
 my $cr = Net::CVE-&gt;new ();
 
-$cr-&gt;get (&quot;CVE-2022-12345&quot;);
+$cr-&gt;get (&quot;CVE-2022-26928&quot;);
 my $full_report = $cr-&gt;data;
 my $summary     = $cr-&gt;summary;
 
+$cr-&gt;diag;
+
 use Data::Peek;
-DDumper $cr-&gt;summary (&quot;CVE-2022-12345&quot;);</code></pre>
+DDumper $cr-&gt;summary (&quot;CVE-2022-26928&quot;);</code></pre>
 
 <h1 id="DESCRIPTION">DESCRIPTION</h1>
 
@@ -108,6 +111,14 @@ $reporter-&gt;get (&quot;Files/CVE-2022-26928.json&quot;);</code></pre>
 
 <p>The decoded information is stored internally and will be re-used for other methods.</p>
 
+<p><code>get</code> returns the object and allows to omit a call to <code>new</code> which will be implicit but does not allow attributes</p>
+
+<pre><code>my $reporter = Net::CVE-&gt;get (&quot;2022-26928&quot;);</code></pre>
+
+<p>is a shortcut to</p>
+
+<pre><code>my $reporter = Net::CVE-&gt;new-&gt;get (&quot;2022-26928&quot;);</code></pre>
+
 <h2 id="data">data</h2>
 
 <pre><code>my $info = $reporter-&gt;data;</code></pre>
@@ -126,6 +137,10 @@ $reporter-&gt;get (&quot;Files/CVE-2022-26928.json&quot;);</code></pre>
 
 <pre><code>$reporter-&gt;get (&quot;CVE-2022-26928&quot;);
 my $info = $reporter-&gt;data;</code></pre>
+
+<p>or even, whithout an object</p>
+
+<pre><code>my $info = Net::CVE-&gt;data (&quot;CVE-2022-26928&quot;);</code></pre>
 
 <h2 id="summary">summary</h2>
 
@@ -146,6 +161,10 @@ my $info = $reporter-&gt;summary (&quot;CVE-2022-26928&quot;);</code></pre>
 
 <pre><code>$reporter-&gt;get (&quot;CVE-2022-26928&quot;);
 my $info = $reporter-&gt;summary;</code></pre>
+
+<p>or even, whithout an object</p>
+
+<pre><code>my $info = Net::CVE-&gt;summary (&quot;CVE-2022-26928&quot;);</code></pre>
 
 <p>The returned hash looks somewhat like this</p>
 
@@ -203,6 +222,49 @@ my $products = $reporter-&gt;product;</code></pre>
 my $platforms = $reporter-&gt;platforms;</code></pre>
 
 <p>Returns the list of platforms for the affected parts of the CVE. In scalar context a string where the (sorted) list of unique platforms is joined by <code>, </code> in list context the (sorted) list itself.</p>
+
+<h2 id="diag">diag</h2>
+
+<pre><code>$reporter-&gt;diag;
+my $diag = $reporter-&gt;diag;</code></pre>
+
+<p>If an error occured, returns information about the error. In void context prints the diagnostics using <code>warn</code>. The diagnostics - if any - will be returned in a hashref with the following fields:</p>
+
+<dl>
+
+<dt id="status1">status</dt>
+<dd>
+
+<p>Status code</p>
+
+</dd>
+<dt id="reason">reason</dt>
+<dd>
+
+<p>Failure reason</p>
+
+</dd>
+<dt id="action">action</dt>
+<dd>
+
+<p>Tag of where the failure occured</p>
+
+</dd>
+<dt id="url1">url</dt>
+<dd>
+
+<p>The URL of the failure</p>
+
+</dd>
+<dt id="usage">usage</dt>
+<dd>
+
+<p>Help message</p>
+
+</dd>
+</dl>
+
+<p>Only the <code>action</code> field is guaranteed to be set, all others are optional.</p>
 
 <h1 id="BUGS">BUGS</h1>
 

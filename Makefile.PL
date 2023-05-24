@@ -54,11 +54,11 @@ my $rv = WriteMakefile (%wm);
 if (-f ".perlcriticrc" && -s "$ENV{HOME}/.perlcriticrc") {
     open my $fh, ">", ".perlcriticrc";
     print $fh do {
-	local (@ARGV, $/) = ("$ENV{HOME}/.perlcriticrc"); <> };
+	local (@ARGV, $/) = ("$ENV{HOME}/.perlcriticrc");
+	<> =~ s{^hard_max = \K\d+$}{150}rm };
     print $fh join "\n" => "",
 	"[-Community::EmptyReturn]",	#
 	"[-Community::Wantarray]",	#
-	"[-Tics::ProhibitLongLines]",	# L<...> is long
 	"";
     close $fh;
     }

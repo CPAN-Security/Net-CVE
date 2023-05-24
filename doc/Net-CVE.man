@@ -11,12 +11,14 @@ STDIN(1)              User Contributed Perl Documentation             STDIN(1)
 
         my $cr = Net::CVE->new ();
 
-        $cr->get ("CVE-2022-12345");
+        $cr->get ("CVE-2022-26928");
         my $full_report = $cr->data;
         my $summary     = $cr->summary;
 
+        $cr->diag;
+
         use Data::Peek;
-        DDumper $cr->summary ("CVE-2022-12345");
+        DDumper $cr->summary ("CVE-2022-26928");
 
 [1mDESCRIPTION[0m
        This module provides a Perl interface to retrieve information from the
@@ -65,6 +67,15 @@ STDIN(1)              User Contributed Perl Documentation             STDIN(1)
        The decoded information is stored internally and will be re-used for
        other methods.
 
+       "get" returns the object and allows to omit a call to "new" which will
+       be implicit but does not allow attributes
+
+        my $reporter = Net::CVE->get ("2022-26928");
+
+       is a shortcut to
+
+        my $reporter = Net::CVE->new->get ("2022-26928");
+
    [1mdata[0m
         my $info = $reporter->data;
 
@@ -84,6 +95,10 @@ STDIN(1)              User Contributed Perl Documentation             STDIN(1)
 
         $reporter->get ("CVE-2022-26928");
         my $info = $reporter->data;
+
+       or even, whithout an object
+
+        my $info = Net::CVE->data ("CVE-2022-26928");
 
    [1msummary[0m
         my $info = $reporter->summary;
@@ -105,6 +120,10 @@ STDIN(1)              User Contributed Perl Documentation             STDIN(1)
 
         $reporter->get ("CVE-2022-26928");
         my $info = $reporter->summary;
+
+       or even, whithout an object
+
+        my $info = Net::CVE->summary ("CVE-2022-26928");
 
        The returned hash looks somewhat like this
 
@@ -164,6 +183,32 @@ STDIN(1)              User Contributed Perl Documentation             STDIN(1)
        Returns the list of platforms for the affected parts of the CVE. In
        scalar context a string where the (sorted) list of unique platforms is
        joined by ", " in list context the (sorted) list itself.
+
+   [1mdiag[0m
+        $reporter->diag;
+        my $diag = $reporter->diag;
+
+       If an error occured, returns information about the error. In void
+       context prints the diagnostics using "warn". The diagnostics - if any -
+       will be returned in a hashref with the following fields:
+
+       status
+         Status code
+
+       reason
+         Failure reason
+
+       action
+         Tag of where the failure occured
+
+       url
+         The URL of the failure
+
+       usage
+         Help message
+
+       Only the "action" field is guaranteed to be set, all others are
+       optional.
 
 [1mBUGS[0m
        None so far
@@ -254,4 +299,4 @@ STDIN(1)              User Contributed Perl Documentation             STDIN(1)
 
 
 
-perl v5.36.0                      2023-05-22                          STDIN(1)
+perl v5.36.0                      2023-05-24                          STDIN(1)

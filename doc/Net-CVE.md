@@ -8,12 +8,14 @@ Net::CVE - Fetch CVE (Common Vulnerabilities and Exposures) information from cve
 
     my $cr = Net::CVE->new ();
 
-    $cr->get ("CVE-2022-12345");
+    $cr->get ("CVE-2022-26928");
     my $full_report = $cr->data;
     my $summary     = $cr->summary;
 
+    $cr->diag;
+
     use Data::Peek;
-    DDumper $cr->summary ("CVE-2022-12345");
+    DDumper $cr->summary ("CVE-2022-26928");
 
 # DESCRIPTION
 
@@ -68,6 +70,15 @@ information from the internet.
 The decoded information is stored internally and will be re-used for other
 methods.
 
+`get` returns the object and allows to omit a call to `new` which will be
+implicit but does not allow attributes
+
+    my $reporter = Net::CVE->get ("2022-26928");
+
+is a shortcut to
+
+    my $reporter = Net::CVE->new->get ("2022-26928");
+
 ## data
 
     my $info = $reporter->data;
@@ -86,6 +97,10 @@ or
 
     $reporter->get ("CVE-2022-26928");
     my $info = $reporter->data;
+
+or even, whithout an object
+
+    my $info = Net::CVE->data ("CVE-2022-26928");
 
 ## summary
 
@@ -107,6 +122,10 @@ or
 
     $reporter->get ("CVE-2022-26928");
     my $info = $reporter->summary;
+
+or even, whithout an object
+
+    my $info = Net::CVE->summary ("CVE-2022-26928");
 
 The returned hash looks somewhat like this
 
@@ -170,6 +189,37 @@ context a string where the (sorted) list of unique products is joined by
 Returns the list of platforms for the affected parts of the CVE. In scalar
 context a string where the (sorted) list of unique platforms is joined by
 `, ` in list context the (sorted) list itself.
+
+## diag
+
+    $reporter->diag;
+    my $diag = $reporter->diag;
+
+If an error occured, returns information about the error. In void context
+prints the diagnostics using `warn`. The diagnostics - if any - will be
+returned in a hashref with the following fields:
+
+- status
+
+    Status code
+
+- reason
+
+    Failure reason
+
+- action
+
+    Tag of where the failure occured
+
+- url
+
+    The URL of the failure
+
+- usage
+
+    Help message
+
+Only the `action` field is guaranteed to be set, all others are optional.
 
 # BUGS
 

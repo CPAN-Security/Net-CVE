@@ -5,7 +5,7 @@ package Net::CVE;
 use 5.014002;
 use warnings;
 
-our $VERSION = "0.003"; # 20230523
+our $VERSION = "0.003"; # 20230524
 
 use Carp;
 use HTTP::Tiny;
@@ -24,6 +24,7 @@ sub new {
 	ua   => undef,
 	lang => "en",
 	data => {},
+	diag => undef,
 	);
     if (@_) {
 	if (@_ == 1 && ref $_[0] eq "HASH") {
@@ -37,10 +38,26 @@ sub new {
     bless \%r => $class;
     } # new
 
+sub diag {
+    my $self = shift or return;
+    ref $self or return;
+    my $d = $self->{diag} or return;
+    unless (defined wantarray) { # void context
+	my $act = $d->{action};
+	warn "$act: ",
+	    (join " " => grep { length } $d->{status}, $d->{reason}), "\n";
+	$act =~ s/./ /g;
+	warn "$act  URL = $d->{url}\n"	if $d->{url};
+	warn "$act  $d->{usage}\n"	if $d->{usage};
+	}
+    return $d;
+    } # diag
+
 sub get {
     my ($self, $cve) = @_;
     ref $self or $self = __PACKAGE__->new ();
     $self->{data} = {};
+    $self->{diag} = undef;
     $cve or return $self;
     $cve =~ s/^(?=[0-9])/CVE-/;
     if ($cve =~ m/^CVE-[0-9]{4}-([0-9]+)$/) {
@@ -49,19 +66,13 @@ sub get {
 	my $r = $self->{ua}->get ($url);
 	unless ($r->{success}) {
 	    #warn "$cve: $r->{status} $r->{reason}\n";
-	    $self->{data} = {
-	     containers => {
-	      cna => {
-	       descriptions => [{
-		value => "$r->{status} $r->{reason}",
-		}],
-	       problemTypes => [{
-	        descriptions => [{
-	         description => "Fetch URL",
-	         url         => $url,
-	         type        => "Error",
-	         }],
-	       }] }}};
+	    $self->{diag} = {
+		status => $r->{status},
+		reason => $r->{reason},
+		action => "get",
+		url    => $url,
+		usage  => undef,
+		};
 	    return $self;
 	    }
 	$self->{data} = decode_json ($r->{content});
@@ -72,7 +83,14 @@ sub get {
 	close $fh;
 	}
     else {
-	warn "Invalid CVE format: '$cve' - expected format CVE-2023-12345\n";
+	#warn "Invalid CVE format: '$cve' - expected format CVE-2023-12345\n";
+	$self->{diag} = {
+	    status => -1,
+	    reason => "Invalid CVE format: '$cve'",
+	    action => "get",
+	    url    => undef,
+	    usage  => 'get ("CVE-2022-26928")',
+	    };
 	return $self;
 	}
     $self;
@@ -192,6 +210,8 @@ Net::CVE - Fetch CVE (Common Vulnerabilities and Exposures) information from cve
  $cr->get ("CVE-2022-26928");
  my $full_report = $cr->data;
  my $summary     = $cr->summary;
+
+ $cr->diag;
 
  use Data::Peek;
  DDumper $cr->summary ("CVE-2022-26928");
@@ -372,6 +392,41 @@ C<, > in list context the (sorted) list itself.
 Returns the list of platforms for the affected parts of the CVE. In scalar
 context a string where the (sorted) list of unique platforms is joined by
 C<, > in list context the (sorted) list itself.
+
+=head2 diag
+
+ $reporter->diag;
+ my $diag = $reporter->diag;
+
+If an error occured, returns information about the error. In void context
+prints the diagnostics using C<warn>. The diagnostics - if any - will be
+returned in a hashref with the following fields:
+
+=over 2
+
+=item status
+
+Status code
+
+=item reason
+
+Failure reason
+
+=item action
+
+Tag of where the failure occured
+
+=item url
+
+The URL of the failure
+
+=item usage
+
+Help message
+
+=back
+
+Only the C<action> field is guaranteed to be set, all others are optional.
 
 =head1 BUGS
 
