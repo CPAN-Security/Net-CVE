@@ -201,8 +201,8 @@ STDIN(1)              User Contributed Perl Documentation             STDIN(1)
        action
          Tag of where the failure occured
 
-       url
-         The URL of the failure
+       source
+         The URL or filename leading to the failure
 
        usage
          Help message
