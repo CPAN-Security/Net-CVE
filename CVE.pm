@@ -47,8 +47,8 @@ sub diag {
 	warn "$act: ",
 	    (join " " => grep { length } $d->{status}, $d->{reason}), "\n";
 	$act =~ s/./ /g;
-	warn "$act  URL = $d->{url}\n"	if $d->{url};
-	warn "$act  $d->{usage}\n"	if $d->{usage};
+	warn "$act  URL = $d->{url}\n"		if $d->{url};
+	warn "$act  usage: $d->{usage}\n"	if $d->{usage};
 	}
     return $d;
     } # diag
