@@ -26,20 +26,22 @@ my %wm = (
     AUTHOR       => "H.Merijn Brand <hmbrand\@cpan.org>",
     VERSION_FROM => "lib/Net/CVE.pm",
     LICENSE      => "perl",
-    EXE_FILES    => [ @exe ],
+    EXE_FILES    => [@exe],
     PREREQ_FATAL => 0,
     PREREQ_PM    => {
 	# Core modules
-	"Carp"				=> 0,
-	"HTTP::Tiny"			=> 0.009,
-	"JSON::MaybeXS"			=> 1.004005,
-	"List::Util"			=> 0,
+	"Carp"          => 0,
+	"HTTP::Tiny"    => 0.009,
+	"JSON::MaybeXS" => 1.004005,
+	"List::Util"    => 0,
 
 	# For testing
-	"Test::More"			=> 0.90,
-	"Test::Warnings"		=> 0,
+	"Test::More"       => 0.90,
+	"Test::Warnings"   => 0,
+	"Test::MockObject" => 0,
+	"URI"              => 0,
 	},
-    macro        => { TARFLAGS   => "--format=ustar -c -v -f", },
+    macro => {TARFLAGS => "--format=ustar -c -v -f",},
     );
 
 if ($ENV{EXTENDED_TESTING}) { # for CpanCover and masochists

@@ -66,6 +66,8 @@ sub get {
 	my $r = $self->{ua}->get ($url);
 	unless ($r->{success}) {
 	    #warn "$cve: $r->{status} $r->{reason}\n";
+	    my $error = "$r->{status} $r->{reason}";
+	    $r->{content} and $error .= ": $r->{content}";
 	    $self->{diag} = {
 		status => $r->{status},
 		reason => $r->{reason},
@@ -73,6 +75,19 @@ sub get {
 		url    => $url,
 		usage  => undef,
 		};
+	    $self->{data} = {
+	     containers => {
+	      cna => {
+	       descriptions => [{
+		value => $error,
+		}],
+	       problemTypes => [{
+	        descriptions => [{
+	         description => "Fetch URL",
+	         url         => $url,
+	         type        => "Error",
+	         }],
+	       }] }}};
 	    return $self;
 	    }
 	$self->{data} = decode_json ($r->{content});
