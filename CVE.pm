@@ -47,7 +47,7 @@ sub diag {
 	warn "$act: ",
 	    (join " " => grep { length } $d->{status}, $d->{reason}), "\n";
 	$act =~ s/./ /g;
-	warn "$act  URL = $d->{url}\n"		if $d->{url};
+	warn "$act  source = $d->{source}\n"	if $d->{source};
 	warn "$act  usage: $d->{usage}\n"	if $d->{usage};
 	}
     return $d;
@@ -70,7 +70,7 @@ sub get {
 		status => $r->{status},
 		reason => $r->{reason},
 		action => "get",
-		url    => $url,
+		source => $url,
 		usage  => undef,
 		};
 	    return $self;
@@ -78,8 +78,27 @@ sub get {
 	$self->{data} = decode_json ($r->{content});
 	}
     elsif (-s $cve) {
-	open my $fh, "<:encoding(utf-8)", $cve or croak "$cve: $!\n";
-	$self->{data} = decode_json (do { local $/; <$fh> });
+	my $fh;
+	unless (open $fh, "<:encoding(utf-8)", $cve) {
+	    $self->{diag} = {
+		status => 0 + $!,
+		reason => "$!",
+		action => "get",
+		source => $cve,
+		usage  => 'get ("cve-2022-26928.json")',
+		};
+	    return $self;
+	    }
+	unless (eval { $self->{data} = decode_json (do { local $/; <$fh> }); 1 }) {
+	    $self->{diag} = {
+		status => -2,
+		reason => $@ =~ s{\s+at\s+\S+\s+line\s+\d+.*}{}rs,
+		action => "decode_json",
+		source => $cve,
+		usage  => undef,
+		};
+	    return $self;
+	    }
 	close $fh;
 	}
     else {
@@ -88,7 +107,7 @@ sub get {
 	    status => -1,
 	    reason => "Invalid CVE format: '$cve'",
 	    action => "get",
-	    url    => undef,
+	    source => undef,
 	    usage  => 'get ("CVE-2022-26928")',
 	    };
 	return $self;
@@ -416,9 +435,9 @@ Failure reason
 
 Tag of where the failure occured
 
-=item url
+=item source
 
-The URL of the failure
+The URL or filename leading to the failure
 
 =item usage
 

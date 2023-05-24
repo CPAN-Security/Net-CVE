@@ -211,9 +211,9 @@ returned in a hashref with the following fields:
 
     Tag of where the failure occured
 
-- url
+- source
 
-    The URL of the failure
+    The URL or filename leading to the failure
 
 - usage
 
