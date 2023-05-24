@@ -65,10 +65,14 @@ sub get {
 	my $url = join "/" => $self->{url}, $cve;
 	my $r = $self->{ua}->get ($url);
 	unless ($r->{success}) {
-	    #warn "$cve: $r->{status} $r->{reason}\n";
+	    # if pseudo-HTTP status code 599 and reason "Internal Exception"
+	    # the content field will contain the text of the error
+	    my $status = $r->{status};
+	    my $reason = join ": " => grep { length }
+		$r->{reason}, $status eq "599" ? $r->{content} : "";
 	    $self->{diag} = {
-		status => $r->{status},
-		reason => $r->{reason},
+		status => $status,
+		reason => $reason,
 		action => "get",
 		source => $url,
 		usage  => undef,
@@ -107,7 +111,7 @@ sub get {
 	    status => -1,
 	    reason => "Invalid CVE format: '$cve'",
 	    action => "get",
-	    source => undef,
+	    source => "tag",
 	    usage  => 'get ("CVE-2022-26928")',
 	    };
 	return $self;

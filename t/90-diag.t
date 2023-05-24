@@ -19,7 +19,7 @@ is_deeply ($r->diag, {
     status => -1,
     reason => "Invalid CVE format: '$bad'",
     action => "get",
-    source => undef,
+    source => "tag",
     usage  => 'get ("CVE-2022-26928")',
     },						"Got diagnostics");
 
