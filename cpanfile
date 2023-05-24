@@ -17,6 +17,8 @@ on "configure" => sub {
 on "test" => sub {
     requires   "Test::More"               => "0.90";
     requires   "Test::Warnings";
+    requires   "Test::MockObject";
+    requires   "URI";
 
     recommends "Test::More"               => "1.302195";
     };
