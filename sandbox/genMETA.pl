@@ -52,6 +52,7 @@ requires:
     perl:                5.014002
     Carp:                0
     HTTP::Tiny:          0.009
+    IO::Socket::SSL:     1.42
     JSON::MaybeXS:       1.004005
     List::Util:          0
 configure_requires:
@@ -66,6 +67,7 @@ configure_recommends:
 recommends:
     Data::Peek:          0.52
     HTTP::Tiny:          0.082
+    IO::Socket::SSL:     2.083
 test_recommends:
     Test::More:          1.302195
 configure_suggests:
