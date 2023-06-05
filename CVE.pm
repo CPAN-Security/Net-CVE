@@ -61,7 +61,7 @@ sub get {
     $cve or return $self;
     $cve =~ s/^(?=[0-9])/CVE-/;
     if ($cve =~ m/^CVE-[0-9]{4}-([0-9]+)$/) {
-	$self->{ua} //= HTTP::Tiny->new ();
+	$self->{ua} //= HTTP::Tiny->new ( verify_SSL => 1 );
 	my $url = join "/" => $self->{url}, $cve;
 	my $r = $self->{ua}->get ($url);
 	unless ($r->{success}) {
@@ -268,7 +268,7 @@ Base url for REST API
 User agent. Needs to know about C<< ->get >>. Defaults to L<HTTP::Tiny>.
 Initialized on first use.
 
- my $reporter = CVE->new (ua => HTTP::Tiny->new);
+ my $reporter = CVE->new (ua => HTTP::Tiny->new(verify_SSL=>1));
 
 Other agents not yet tested, so they might fail.
 
