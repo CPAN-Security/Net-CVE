@@ -1,3 +1,6 @@
+0.006 - 2023-06-06, H.Merijn Brand
+    * More possible known fails for SSL fails in diag.t
+
 0.005 - 2023-06-05, H.Merijn Brand
     * Verify certificates when using HTTP::Tiny (stigtsp, issue#9)
 

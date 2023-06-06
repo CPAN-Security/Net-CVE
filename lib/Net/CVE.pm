@@ -5,7 +5,7 @@ package Net::CVE;
 use 5.014002;
 use warnings;
 
-our $VERSION = "0.005"; # 20230531
+our $VERSION = "0.006"; # 20230606
 
 use Carp;
 use HTTP::Tiny;
