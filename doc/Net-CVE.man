@@ -96,7 +96,7 @@ STDIN(1)              User Contributed Perl Documentation             STDIN(1)
         $reporter->get ("CVE-2022-26928");
         my $info = $reporter->data;
 
-       or even, whithout an object
+       or even, without an object
 
         my $info = Net::CVE->data ("CVE-2022-26928");
 
@@ -121,7 +121,7 @@ STDIN(1)              User Contributed Perl Documentation             STDIN(1)
         $reporter->get ("CVE-2022-26928");
         my $info = $reporter->summary;
 
-       or even, whithout an object
+       or even, without an object
 
         my $info = Net::CVE->summary ("CVE-2022-26928");
 
@@ -188,7 +188,7 @@ STDIN(1)              User Contributed Perl Documentation             STDIN(1)
         $reporter->diag;
         my $diag = $reporter->diag;
 
-       If an error occured, returns information about the error. In void
+       If an error occurred, returns information about the error. In void
        context prints the diagnostics using "warn". The diagnostics - if any -
        will be returned in a hashref with the following fields:
 
@@ -199,7 +199,7 @@ STDIN(1)              User Contributed Perl Documentation             STDIN(1)
          Failure reason
 
        action
-         Tag of where the failure occured
+         Tag of where the failure occurred
 
        source
          The URL or filename leading to the failure
@@ -299,4 +299,4 @@ STDIN(1)              User Contributed Perl Documentation             STDIN(1)
 
 
 
-perl v5.36.0                      2023-05-24                          STDIN(1)
+perl v5.36.0                      2023-06-27                          STDIN(1)

@@ -98,7 +98,7 @@ or
     $reporter->get ("CVE-2022-26928");
     my $info = $reporter->data;
 
-or even, whithout an object
+or even, without an object
 
     my $info = Net::CVE->data ("CVE-2022-26928");
 
@@ -123,7 +123,7 @@ or
     $reporter->get ("CVE-2022-26928");
     my $info = $reporter->summary;
 
-or even, whithout an object
+or even, without an object
 
     my $info = Net::CVE->summary ("CVE-2022-26928");
 
@@ -195,7 +195,7 @@ context a string where the (sorted) list of unique platforms is joined by
     $reporter->diag;
     my $diag = $reporter->diag;
 
-If an error occured, returns information about the error. In void context
+If an error occurred, returns information about the error. In void context
 prints the diagnostics using `warn`. The diagnostics - if any - will be
 returned in a hashref with the following fields:
 
@@ -209,7 +209,7 @@ returned in a hashref with the following fields:
 
 - action
 
-    Tag of where the failure occured
+    Tag of where the failure occurred
 
 - source
 
