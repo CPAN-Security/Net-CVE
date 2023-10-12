@@ -66,7 +66,7 @@ configure_recommends:
     ExtUtils::MakeMaker: 7.22
 recommends:
     Data::Peek:          0.52
-    HTTP::Tiny:          0.086
+    HTTP::Tiny:          0.088
     IO::Socket::SSL:     2.083
 test_recommends:
     Test::More:          1.302195
