@@ -6,7 +6,7 @@ use Test::More;
 
 eval "use Test::MinimumVersion";
 if ($@) {
-    print "1..0 # Test::MinimumVersion required for compatability tests\n";
+    print "1..0 # SKIP Test::MinimumVersion required for compatability tests\n";
     exit 0;
     }
 
