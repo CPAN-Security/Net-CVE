@@ -21,6 +21,7 @@ valgrind.log
 pod2htm*
 nytprof*
 tmp/*
+^cve\.pl
 cve.org/
 sandbox/cover_db*
 sandbox/dist-other
