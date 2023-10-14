@@ -7,7 +7,7 @@ use Test::More;
 BEGIN { $ENV{AUTHOR_TESTING} = 1; }
 eval "use Test::Kwalitee qw( kwalitee_ok );";
 if ($@) {
-    print "1..0 # Test::Kwalitee required for this test\n";
+    print "1..0 # SKIP Test::Kwalitee required for this test\n";
     exit 0;
     }
 
