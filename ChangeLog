@@ -1,3 +1,6 @@
+0.008 - 2023-10-23, H.Merijn Brand
+    * Prevent warning if report is incomplete
+
 0.007 - 2023-10-14, H.Merijn Brand
     * Transfered authority to CPAN-Security
     * Update docs for groff-1.24
