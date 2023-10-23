@@ -68,21 +68,23 @@ foreach my $cve (@cve) {
 	say " State           : ", $r->{cveMetadata}{state};
 	say " Published       : ", $r->{cveMetadata}{datePublished};
 	my $cc = $r->{containers}{cna} or next;
-	say " Title           : ", $cc->{title};
-	say " Public          : ", $cc->{datePublic};
+	say " Title           : ", $cc->{title}      // "-none-";
+	say " Public          : ", $cc->{datePublic} // "-unknown-";
 	if (my $md = $cc->{providerMetadata}) {
 	    printf " Provider        : %s:%s\n", $md->{shortName}, $md->{orgId};
 	    }
+	my $lead = " " x 19;
 	foreach my $rd (@{$cc->{descriptions} || []}) {
-	    printf "%16s : %s\n", $rd->{lang}, $rd->{value};
+	    printf "%16s : %s\n", $rd->{lang}, $rd->{value} =~ s/\n\K/$lead/gr;
 	    }
 	foreach my $rr (@{$cc->{references} || []}) {
-	    say " References      : ", $rr->{name};
-	    if (my $tags = $rr->{tags}) {
-		say "                   ", join ", " => @$tags;
-		}
-	    if (my $url = $rr->{url}) {
-		say "                   ", $url;
+	    my $trim = "References";
+	    for (grep { length }
+		 $rr->{name},
+		 (join ", " => @{$rr->{tags} || []}),
+		 $rr->{url}) {
+		printf " %-15s : %s\n", $trim, $_;
+		$trim = "";
 		}
 	    }
 	foreach my $pt (@{$cc->{problemTypes} || []}) {
