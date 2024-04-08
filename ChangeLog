@@ -1,6 +1,7 @@
-0.008 - 2024-01-04, H.Merijn Brand
+0.008 - 2024-04-08, H.Merijn Brand
     * Prevent warning if report is incomplete
     * It is 2024
+    * Skip version lines in reports with only n/a
 
 0.007 - 2023-10-14, H.Merijn Brand
     * Transfered authority to CPAN-Security

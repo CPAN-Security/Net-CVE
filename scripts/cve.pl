@@ -3,7 +3,7 @@
 use 5.014002;
 use warnings;
 
-our $VERSION = "0.02 - 20231014";
+our $VERSION = "0.03 - 20240408";
 our $CMD = $0 =~ s{.*/}{}r;
 
 sub usage {
@@ -94,12 +94,16 @@ foreach my $cve (@cve) {
 		}
 	    }
 	foreach my $af (@{$cc->{affected} || []}) {
+	    ($af->{vendor}  || "n/a") eq "n/a" &&
+	    ($af->{product} || "n/a") eq "n/a" and next;
 	    say " Affected        : ", $af->{vendor}, " : ", $af->{product};
 	    if (my $p = $af->{platforms}) {
 		say "       Platforms : ", join ", " => @$p;
 		}
 	    foreach my $v (@{$af->{versions} || []}) {
 		my ($vs, $vv, $vvt) = delete @{$v}{qw( status version versionType )};
+		$vv && $vv eq "n/a" and $vvt ||= "n/a";
+		$vs && $vs eq "affected" && $vvt eq "n/a" and next;
 		printf "       Versions  : %-12s %s (%s)\n", $vs, $vv, $vvt;
 		foreach my $vc (sort keys %$v) {
 		    printf "%16s : %12s %s\n", "", $vc, $v->{$vc};
