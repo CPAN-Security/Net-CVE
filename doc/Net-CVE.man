@@ -265,7 +265,7 @@ AUTHOR
        H.Merijn Brand <hmbrand@cpan.org>
 
 COPYRIGHT AND LICENSE
-       Copyright (C) 2023-2023 H.Merijn Brand
+       Copyright (C) 2023-2024 H.Merijn Brand
 
        This library is free software; you can redistribute it and/or modify it
        under the same terms as Perl itself. See perlartistic.
@@ -295,4 +295,4 @@ DISCLAIMER OF WARRANTY
        SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF  SUCH
        DAMAGES.
 
-perl v5.38.0                      2023-10-12                          STDIN(1)
+perl v5.38.2                      2024-04-08                          STDIN(1)
