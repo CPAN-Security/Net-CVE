@@ -52,6 +52,7 @@ requires:
     perl:                5.014002
     Carp:                0
     HTTP::Tiny:          0.009
+    Data::Dumper:        0
     IO::Socket::SSL:     1.42
     JSON::MaybeXS:       1.004005
     List::Util:          0
@@ -66,8 +67,9 @@ configure_recommends:
     ExtUtils::MakeMaker: 7.22
 recommends:
     Data::Peek:          0.52
+    Data::Dumper:        2.188
     HTTP::Tiny:          0.088
-    IO::Socket::SSL:     2.084
+    IO::Socket::SSL:     2.085
 test_recommends:
     Test::More:          1.302198
 configure_suggests:

@@ -3,7 +3,7 @@
 use 5.014002;
 use warnings;
 
-our $VERSION = "0.03 - 20240408";
+our $VERSION = "0.04 - 20240408";
 our $CMD = $0 =~ s{.*/}{}r;
 
 sub usage {
@@ -20,6 +20,7 @@ sub usage {
 
 use Net::CVE;
 use Data::Peek;
+use Data::Dumper;
 use JSON::MaybeXS;
 use List::Util   qw( first          );
 use Getopt::Long qw(:config bundling);
@@ -45,7 +46,13 @@ first { $_ !~ m/^(?:cve-)?[0-9]{4}-[0-9]+$/i } @ARGV and
 $cve{$_} = $opt_f ? $cr->data ($_) : $cr->summary ($_) for @ARGV;
 
 if ($opt_d) {
-    DDumper \%cve;
+    eval "local \$_; require Data::Peek;";
+    if ($@) {
+	print STDERR Data::Dumper->Dump (\%cve);
+	}
+    else {
+	print STDERR Data::Peek::DDumper (\%cve);
+	}
     exit 0;
     }
 
