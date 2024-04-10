@@ -4,9 +4,9 @@ requires   "HTTP::Tiny"               => "0.009";
 requires   "IO::Socket::SSL"          => "1.42";
 requires   "JSON::MaybeXS"            => "1.004005";
 requires   "List::Util";
+requires   "Data::Peek"               => "0.52";
 
 recommends "Data::Dumper"             => "2.188";
-recommends "Data::Peek"               => "0.52";
 recommends "HTTP::Tiny"               => "0.088";
 recommends "IO::Socket::SSL"          => "2.085";
 

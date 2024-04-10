@@ -19,6 +19,7 @@ unless (exists $ENV{AUTOMATED_TESTING} and $ENV{AUTOMATED_TESTING} == 1) {
 	    push @exe => "scripts/$_->[0]";
 	}
     }
+
 my %wm = (
     NAME         => "Net::CVE",
     DISTNAME     => "Net-CVE",
@@ -34,6 +35,9 @@ my %wm = (
 	"HTTP::Tiny"		=> 0.009,
 	"JSON::MaybeXS"		=> 1.004005,
 	"List::Util"		=> 0,
+
+	# cve.pl uses Data::Peek
+	"Data::Peek"        => 0.52,
 
 	# For https
 	"IO::Socket::SSL"	=> 1.42,
