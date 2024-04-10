@@ -30,3 +30,5 @@ pod2htmd\.tmp
 \.perlcriticrc
 ^CVE\.pm
 ^cve\.pl
+.*~$
+.*\.bak$
