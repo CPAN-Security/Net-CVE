@@ -19,6 +19,7 @@ appveyor\.yml
 ^used-by-t/
 genMETA.pl
 ^Makefile$
+^Makefile\.old
 MANIFEST\.SKIP
 CONTRIBUTING\.md
 ^MYMETA

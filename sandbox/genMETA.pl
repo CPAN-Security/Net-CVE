@@ -51,7 +51,7 @@ provides:
 requires:
     perl:                5.014002
     Carp:                0
-    HTTP::Tiny:          0.009
+    HTTP::Tiny:          0.025
     Data::Dumper:        0
     IO::Socket::SSL:     1.42
     JSON::MaybeXS:       1.004005
