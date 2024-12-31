@@ -7,8 +7,9 @@ requires   "List::Util";
 
 recommends "Data::Dumper"             => "2.189";
 recommends "Data::Peek"               => "0.52";
-recommends "HTTP::Tiny"               => "0.088";
-recommends "IO::Socket::SSL"          => "2.085";
+recommends "HTTP::Tiny"               => "0.090";
+recommends "IO::Socket::SSL"          => "2.089";
+recommends "JSON::MaybeXS"            => "1.004008";
 
 on "configure" => sub {
     requires   "ExtUtils::MakeMaker";
@@ -22,5 +23,5 @@ on "test" => sub {
     requires   "Test::More"               => "0.90";
     requires   "Test::Warnings";
 
-    recommends "Test::More"               => "1.302199";
+    recommends "Test::More"               => "1.302207";
     };
