@@ -5,7 +5,7 @@ package Net::CVE;
 use 5.014002;
 use warnings;
 
-our $VERSION = "0.009";
+our $VERSION = "0.010";
 
 use Carp;
 use HTTP::Tiny;
@@ -524,7 +524,7 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2023-2024 H.Merijn Brand
+Copyright (C) 2023-2025 H.Merijn Brand
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself. See L<perlartistic>.
