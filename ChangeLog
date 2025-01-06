@@ -1,6 +1,8 @@
 0.010 - 2025-01-06, H.Merijn Brand
     * Tested with perl-5.40.0
     * It is 2025
+    * Add SECURITY.md
+    * Add CONTRIBUTING.md
 
 0.009 - 2024-06-18, H.Merijn Brand
     * Require HTTP::Tiny 0.025
