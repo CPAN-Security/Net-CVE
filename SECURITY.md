@@ -3,7 +3,7 @@
 Report issues via email at: H.Merijn Brand <hmbrand@cpan.org>.
 
 
-This is the Security Policy for the Perl Net::CVE distribution.
+This is the Security Policy for Net::CVE.
 
 The latest version of the Security Policy can be found in the
 [git repository for Net::CVE](https://github.com/CPAN-Security/Net-CVE).

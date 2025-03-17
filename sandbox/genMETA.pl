@@ -66,15 +66,15 @@ test_requires:
 configure_recommends:
     ExtUtils::MakeMaker: 7.22
 recommends:
-    Data::Peek:          0.52
+    Data::Peek:          0.53
     Data::Dumper:        2.189
     HTTP::Tiny:          0.090
     IO::Socket::SSL:     2.089
     JSON::MaybeXS:       1.004008
 test_recommends:
-    Test::More:          1.302207
+    Test::More:          1.302209
 configure_suggests:
-    ExtUtils::MakeMaker: 7.70
+    ExtUtils::MakeMaker: 7.72
 resources:
     license:             http://dev.perl.org/licenses/
     repository:          https://github.com/CPAN-Security/Net-CVE

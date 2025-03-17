@@ -21,7 +21,6 @@ genMETA.pl
 ^Makefile$
 ^Makefile\.old
 MANIFEST\.SKIP
-CONTRIBUTING\.md
 ^MYMETA
 pm_to_blib
 ^xt/

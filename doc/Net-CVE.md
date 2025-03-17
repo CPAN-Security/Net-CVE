@@ -244,6 +244,7 @@ None so far
     Optionally. It does not (yet) provide vendor, product and platforms.
     It however provides nice search capabilities.
 
+- EUVD support
 - RHSA support
 
     Extend to return results for `RHSA-2023:1791` type vulnerability tags.

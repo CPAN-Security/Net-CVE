@@ -476,6 +476,9 @@ Readme, Changelog, Makefile.PL, ...
 Optionally. It does not (yet) provide vendor, product and platforms.
 It however provides nice search capabilities.
 
+=item EUVD support
+
+
 =item RHSA support
 
 Extend to return results for C<RHSA-2023:1791> type vulnerability tags.
