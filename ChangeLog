@@ -1,8 +1,9 @@
-0.010 - 2025-03-17, H.Merijn Brand
+0.010 - 2025-06-18, H.Merijn Brand
     * Tested with perl-5.40
     * It is 2025
     * Add SECURITY.md
     * Add CONTRIBUTING.md
+    * Add SUSE tags as TODO
 
 0.009 - 2024-06-18, H.Merijn Brand
     * Require HTTP::Tiny 0.025

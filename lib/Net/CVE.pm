@@ -501,6 +501,16 @@ Will set C<@cve> to
 
 See L<the API documentation|https://access.redhat.com/documentation/en-us/red_hat_security_data_api/1.0/html-single/red_hat_security_data_api/index>.
 
+=item SUSE support
+
+Extend to return results for C<SUSE-SU-2025:01968-1> type vulnerability tags.
+
+ https://www.suse.com/support/update/announcement/2025/suse-su-202501968-1/
+
+Shouls set C<@cve> to
+
+ qw( CVE-2025-5601 );
+
 =back
 
 =head1 SEE ALSO

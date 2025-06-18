@@ -267,6 +267,16 @@ None so far
 
     See [the API documentation](https://access.redhat.com/documentation/en-us/red_hat_security_data_api/1.0/html-single/red_hat_security_data_api/index).
 
+- SUSE support
+
+    Extend to return results for `SUSE-SU-2025:01968-1` type vulnerability tags.
+
+        https://www.suse.com/support/update/announcement/2025/suse-su-202501968-1/
+
+    Shouls set `@cve` to
+
+        qw( CVE-2025-5601 );
+
 # SEE ALSO
 
 - CVE search

@@ -326,6 +326,18 @@ my @cve = map { $_-&gt;{cve} }
 <p>See <a href="https://access.redhat.com/documentation/en-us/red_hat_security_data_api/1.0/html-single/red_hat_security_data_api/index">the API documentation</a>.</p>
 
 </dd>
+<dt id="SUSE-support">SUSE support</dt>
+<dd>
+
+<p>Extend to return results for <code>SUSE-SU-2025:01968-1</code> type vulnerability tags.</p>
+
+<pre><code>https://www.suse.com/support/update/announcement/2025/suse-su-202501968-1/</code></pre>
+
+<p>Shouls set <code>@cve</code> to</p>
+
+<pre><code>qw( CVE-2025-5601 );</code></pre>
+
+</dd>
 </dl>
 
 <h1 id="SEE-ALSO">SEE ALSO</h1>

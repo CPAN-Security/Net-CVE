@@ -251,6 +251,16 @@ TODO
          us/red_hat_security_data_api/1.0/html-
          single/red_hat_security_data_api/index>.
 
+       SUSE support
+         Extend to return results for "SUSE-SU-2025:01968-1" type
+         vulnerability tags.
+
+          https://www.suse.com/support/update/announcement/2025/suse-su-202501968-1/
+
+         Shouls set @cve to
+
+          qw( CVE-2025-5601 );
+
 SEE ALSO
        CVE search
          <https://cve.org> and
@@ -296,4 +306,4 @@ DISCLAIMER OF WARRANTY
        SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
        DAMAGES.
 
-perl v5.40.1                      2025-01-29                       Net::CVE(3)
+perl v5.40.2                      2025-06-18                       Net::CVE(3)
