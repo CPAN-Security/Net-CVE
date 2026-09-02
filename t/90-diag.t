@@ -8,6 +8,11 @@ use Test::Warnings;
 
 use Net::CVE;
 
+if ($ENV{NO_NETWORK_TESTING}) {
+    print "1..0 # SKIP Live tests disabled due to NO_NETWORK_TESTING\n";
+    exit 0;
+    }
+
 my $bad = "XYZ-2-BAZ";
 my @w;
 
