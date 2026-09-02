@@ -306,4 +306,4 @@ DISCLAIMER OF WARRANTY
        SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
        DAMAGES.
 
-perl v5.42.0                      2026-01-25                       Net::CVE(3)
+perl v5.44.0                      2026-01-25                       Net::CVE(3)

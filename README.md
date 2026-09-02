@@ -55,4 +55,4 @@ New ideas and fixes welcome. Please read [this guide](CONTRIBUTING.md)
 
 ### Author
 
-H.Merijn Brand <hmbrand@cpan.org>
+H.Merijn Brand <perl5@tux.freedom.nl>
